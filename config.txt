@@ -1,0 +1,2 @@
+activation=-d 1190 -h 6000
+checkbalance=-d 0123601348 -c AT+CUSD=1,*124#
