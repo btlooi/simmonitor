@@ -1,0 +1,2 @@
+activation=-d 0123601348 -h 6000
+checkbalance=-d 0123601348 -c AT+CUSD=1,*126# -n (\d{10,11}).{0,65}

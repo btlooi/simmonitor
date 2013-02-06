@@ -24,7 +24,8 @@ C:\ctlab\simmonitor\SimActivate.exe=
 C:\WINDOWS\system32\MSCOMCTL.OCX=
 
 [Package|Standard Setup Package 1|Files Added]
-C:\ctlab\simmonitor\SimActivate.exe=
+c:\ctlab\simmonitor\simactivate.exe=
+C:\ctlab\simmonitor\config.txt=
 
 [Package|Standard Setup Package 1|Files Removed]
 
@@ -43,6 +44,7 @@ C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
 C:\WINDOWS\system32\VB6STKIT.DLL=Yes
 C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
 C:\ctlab\simmonitor\SimActivate.exe=Yes
+C:\ctlab\simmonitor\config.txt=Yes
 
 [Package|Standard Setup Package 1|Configure Registry Files]
 Applicable=No
@@ -65,11 +67,13 @@ C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinP
 C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
 C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
 C:\ctlab\simmonitor\SimActivate.exe=$(AppPath)
+C:\ctlab\simmonitor\config.txt=$(AppPath)
 
 [Package|Standard Setup Package 1|Configure Shared Files]
 Applicable=Yes
 C:\ctlab\simmonitor\SimMonitor.exe=Yes
 C:\ctlab\simmonitor\SimActivate.exe=Yes
+C:\ctlab\simmonitor\config.txt=Yes
 
 [Package|Standard Setup Package 1|Distribution]
 Type=single

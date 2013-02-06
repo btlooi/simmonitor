@@ -3,14 +3,23 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
    Caption         =   "SimMonitor"
-   ClientHeight    =   9675
+   ClientHeight    =   9900
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   11055
+   ClientWidth     =   14655
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9675
-   ScaleWidth      =   11055
+   ScaleHeight     =   9900
+   ScaleWidth      =   14655
    StartUpPosition =   3  'Windows Default
+   Begin VB.ListBox List2 
+      Height          =   2400
+      ItemData        =   "Form1.frx":0000
+      Left            =   30
+      List            =   "Form1.frx":0010
+      TabIndex        =   13
+      Top             =   6585
+      Width           =   840
+   End
    Begin VB.CommandButton Command6 
       Caption         =   "Save 2 File"
       BeginProperty Font 
@@ -89,9 +98,9 @@ Begin VB.Form Form1
    End
    Begin VB.ComboBox cboStart 
       Height          =   315
-      ItemData        =   "Form1.frx":0000
+      ItemData        =   "Form1.frx":002E
       Left            =   2145
-      List            =   "Form1.frx":0031
+      List            =   "Form1.frx":005F
       TabIndex        =   4
       Text            =   "1"
       Top             =   45
@@ -111,7 +120,7 @@ Begin VB.Form Form1
       Height          =   705
       Left            =   15
       TabIndex        =   3
-      Top             =   2235
+      Top             =   2220
       Width           =   915
    End
    Begin VB.Timer Timer1 
@@ -124,7 +133,7 @@ Begin VB.Form Form1
       Left            =   5625
       TabIndex        =   2
       Top             =   135
-      Width           =   5280
+      Width           =   8685
    End
    Begin VB.CommandButton Command1 
       Caption         =   "List ComPort"
@@ -144,13 +153,13 @@ Begin VB.Form Form1
       LocalPort       =   8888
    End
    Begin MSComctlLib.ListView ListView1 
-      Height          =   8535
+      Height          =   8850
       Left            =   960
       TabIndex        =   0
       Top             =   930
-      Width           =   9975
-      _ExtentX        =   17595
-      _ExtentY        =   15055
+      Width           =   13335
+      _ExtentX        =   23521
+      _ExtentY        =   15610
       View            =   3
       LabelWrap       =   -1  'True
       HideSelection   =   -1  'True
@@ -179,17 +188,17 @@ Begin VB.Form Form1
       BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   1
          Text            =   "Status"
-         Object.Width           =   3528
+         Object.Width           =   1764
       EndProperty
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   2
          Text            =   "Time"
-         Object.Width           =   3528
+         Object.Width           =   3175
       EndProperty
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
          Text            =   "Other"
-         Object.Width           =   5292
+         Object.Width           =   12877
       EndProperty
       BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   4
@@ -274,11 +283,15 @@ End Sub
 Private Sub Command3_Click()
     Dim comport As String
     Dim filenum As Integer
+    Dim filename As String
     Dim extraparam As String
     extraparam = "-d 0123601348 -h 6000"
     
+    
+    filename = List2.List(List2.ListIndex) + ".txt"
+    
     filenum = FreeFile
-    Open "config.txt" For Input As #filenum
+    Open filename For Input As #filenum
     While EOF(filenum) = 0
       Line Input #filenum, tmp
       If Not Mid(tmp, 1, 2) = "##" Then
@@ -314,11 +327,13 @@ End Sub
 
 Private Sub Command5_Click()
     Dim comport As String
+    Dim filename As String
     Dim extraparam As String
     extraparam = "-d 0123601348 -c AT+CUSD=1,*124#"
     
+    filename = List2.List(List2.ListIndex) + ".txt"
     filenum = FreeFile
-    Open "config.txt" For Input As #filenum
+    Open filename For Input As #filenum
     While EOF(filenum) = 0
       Line Input #filenum, tmp
       If Not Mid(tmp, 1, 2) = "##" Then
@@ -387,6 +402,7 @@ Private Sub Form_Load()
       cboCount.AddItem CStr(idx)
     Next idx
     
+    List2.ListIndex = 0
 End Sub
 
 Private Sub ProcessMsg(msg As String)
